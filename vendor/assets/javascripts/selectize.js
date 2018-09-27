@@ -2222,8 +2222,7 @@
 						groups[optgroup] = document.createDocumentFragment();
 						groups_order.push(optgroup);
 					}
-					// a child could only have one parent, so if you have more parents clone the child
-					groups[optgroup].appendChild((!j) ? option_html : option_html.cloneNode(true));
+					groups[optgroup].appendChild(option_html);
 				}
 			}
 	
@@ -2613,7 +2612,8 @@
 				var i, active, value_next, wasFull;
 				value = hash_key(value);
 	
-				if (self.items.indexOf(value) !== -1) {
+				//if (self.items.indexOf(value) !== -1) {
+				if ( !self.settings.enableDuplicate && self.items.indexOf(value) !== -1 )	
 					if (inputMode === 'single') self.close();
 					return;
 				}
